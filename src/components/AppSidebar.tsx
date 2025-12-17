@@ -41,7 +41,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({ warehouses }: AppSidebarProps) {
   const pathname = usePathname();
-  const { user, isSuperAdmin, hasPermission } = useAuth();
+  const { isSuperAdmin, hasPermission } = useAuth();
   const warehouseMatch = pathname.match(/^\/warehouses\/(\d+)/);
   const currentWarehouseId = warehouseMatch
     ? Number.parseInt(warehouseMatch[1])

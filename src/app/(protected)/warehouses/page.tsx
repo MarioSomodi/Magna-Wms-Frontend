@@ -25,5 +25,5 @@ export default async function WarehousesPage() {
     );
   }
 
-  return <WarehouseList warehouses={warehouses.data} />;
+  return <WarehouseList initialWarehouses={warehouses.data} />;
 }

@@ -1722,10 +1722,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
         /** Allocate a sales order */
-        post: {
+        get: {
             parameters: {
                 query?: never;
                 header?: never;
@@ -1749,6 +1747,8 @@ export interface paths {
                 };
             };
         };
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1762,10 +1762,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
         /** Cancel a sales order */
-        post: {
+        get: {
             parameters: {
                 query?: never;
                 header?: never;
@@ -1785,6 +1783,8 @@ export interface paths {
                 };
             };
         };
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -2427,7 +2427,35 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        /** Create a new warehouse */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["CreateWarehouseRequest"];
+                    "text/json": components["schemas"]["CreateWarehouseRequest"];
+                    "application/*+json": components["schemas"]["CreateWarehouseRequest"];
+                };
+            };
+            responses: {
+                /** @description Warehouse created. */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["WarehouseDto"];
+                        "application/json": components["schemas"]["WarehouseDto"];
+                        "text/json": components["schemas"]["WarehouseDto"];
+                    };
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -2483,8 +2511,139 @@ export interface paths {
                 };
             };
         };
-        put?: never;
+        /** Update an existing warehouse */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["UpdateWarehouseRequest"];
+                    "text/json": components["schemas"]["UpdateWarehouseRequest"];
+                    "application/*+json": components["schemas"]["UpdateWarehouseRequest"];
+                };
+            };
+            responses: {
+                /** @description Warehouse updated. */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["WarehouseDto"];
+                        "application/json": components["schemas"]["WarehouseDto"];
+                        "text/json": components["schemas"]["WarehouseDto"];
+                    };
+                };
+                /** @description Warehouse not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/Warehouse/{id}/activate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Activate warehouse */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Warehouse activated. */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["WarehouseDto"];
+                        "application/json": components["schemas"]["WarehouseDto"];
+                        "text/json": components["schemas"]["WarehouseDto"];
+                    };
+                };
+                /** @description Warehouse not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/Warehouse/{id}/deactivate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Deactivate warehouse */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Warehouse deactivated. */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["WarehouseDto"];
+                        "application/json": components["schemas"]["WarehouseDto"];
+                        "text/json": components["schemas"]["WarehouseDto"];
+                    };
+                };
+                /** @description Warehouse not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -2543,6 +2702,11 @@ export interface components {
             carrier?: string | null;
             trackingNumber?: string | null;
             lines?: components["schemas"]["ShipmentLineRequest"][] | null;
+        };
+        CreateWarehouseRequest: {
+            code?: string | null;
+            name?: string | null;
+            timezone?: string | null;
         };
         ExecutePutawayRequest: {
             /** Format: double */
@@ -2884,6 +3048,10 @@ export interface components {
         };
         UpdateUserWarehousesRequest: {
             warehouseIds?: number[] | null;
+        };
+        UpdateWarehouseRequest: {
+            name?: string | null;
+            timezone?: string | null;
         };
         UserDto: {
             /** Format: int64 */
